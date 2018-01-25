@@ -117,12 +117,12 @@
         [super setProgress:progress animated:NO];
         [self setNeedsDisplay];
     } else {
-        _animationStartTime = CACurrentMediaTime();
         _animationFromValue = self.progress;
         _animationToValue = progress;
         if (!_displayLink) {
             //Create and setup the display link
             [self.displayLink invalidate];
+            _animationStartTime = CACurrentMediaTime();
             self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(animateProgress:)];
             [self.displayLink addToRunLoop:NSRunLoop.mainRunLoop forMode:NSRunLoopCommonModes];
         } /*else {
