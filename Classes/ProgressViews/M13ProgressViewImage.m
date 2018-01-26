@@ -145,9 +145,11 @@
         }
         
         //Set progress
-        [super setProgress:self.animationFromValue + dt * (self.animationToValue - self.animationFromValue) animated:YES];
+        CGFloat progress = self.animationFromValue + dt * (self.animationToValue - self.animationFromValue);
+        if(progress > 0) {
+            [super setProgress:progress animated:YES];
+        }
         [self setNeedsDisplay];
-        
     });
 }
 
